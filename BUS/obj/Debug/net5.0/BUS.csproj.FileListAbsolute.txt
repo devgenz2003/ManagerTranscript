@@ -1,0 +1,5 @@
+C:\Users\Administrator\Desktop\ManagerStudent\BUS\obj\Debug\net5.0\BUS.csproj.AssemblyReference.cache
+C:\Users\Administrator\Desktop\ManagerStudent\BUS\obj\Debug\net5.0\BUS.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\Desktop\ManagerStudent\BUS\obj\Debug\net5.0\BUS.AssemblyInfoInputs.cache
+C:\Users\Administrator\Desktop\ManagerStudent\BUS\obj\Debug\net5.0\BUS.AssemblyInfo.cs
+C:\Users\Administrator\Desktop\ManagerStudent\BUS\obj\Debug\net5.0\BUS.csproj.CoreCompileInputs.cache

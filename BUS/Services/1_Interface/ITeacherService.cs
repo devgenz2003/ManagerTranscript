@@ -1,0 +1,20 @@
+﻿using BUS.Viewmodel.ExamSchedule;
+using BUS.Viewmodel.Teacher;
+using DAL.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BUS.Services._1_Interface
+{
+    public interface ITeacherService
+    {
+        public Task<List<TeacherVM>> GetAllAsync();
+        public Task<TeacherVM> GetByIDAsync(string Code);
+        public Task<bool> CreateAsync(TeacherCreateVM request);
+        public Task<bool> UpdateAsync(string Code, TeacherUpdateVM request);
+        public Task<bool> RemoveAsync(string Code);
+    }
+}
