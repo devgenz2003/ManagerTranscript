@@ -13,3 +13,4 @@ C:\Users\Administrator\Desktop\ManagerStudent\BUS\obj\Debug\net6.0\BUS.dll
 C:\Users\Administrator\Desktop\ManagerStudent\BUS\obj\Debug\net6.0\refint\BUS.dll
 C:\Users\Administrator\Desktop\ManagerStudent\BUS\obj\Debug\net6.0\BUS.pdb
 C:\Users\Administrator\Desktop\ManagerStudent\BUS\obj\Debug\net6.0\ref\BUS.dll
+C:\Users\Administrator\Desktop\ManagerStudent\BUS\obj\Debug\net6.0\BUS.sourcelink.json

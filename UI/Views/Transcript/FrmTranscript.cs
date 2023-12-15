@@ -2,6 +2,8 @@
 using BUS.Services._2_Implement;
 using BUS.Viewmodel.Student;
 using BUS.Viewmodel.Transcript;
+using DAL.ApplicationDBContext;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,10 +25,12 @@ namespace UI.Views.Transcript
         private readonly IExamScheduleService _IExamScheduleService;
         private readonly IClassTCService _IClassTCService;
         private readonly ISubjectService _ISubjectService;
+        private readonly ManagerStudent_DBContext _dbcontext;
         private TranscriptVM _trs;
         public FrmTranscript()
         {
             InitializeComponent();
+            _dbcontext = new ManagerStudent_DBContext();
             _ITranscriptService = new TranscriptService();
             _IStudentService = new StudentService();
             _IExamScheduleService = new ExamScheduleService();
@@ -36,12 +40,14 @@ namespace UI.Views.Transcript
             LoadStudent();
             LoadClass();
             LoadSubject();
+            LoadData();
         }
         private async void LoadStudent()
         {
             foreach (var data in await _IStudentService.GetAllAsync())
             {
                 cbb_studentcode.Items.Add(data.StudentCode);
+                cbb_studentcodecheck.Items.Add(data.StudentCode);
             }
         }
         private async void LoadExam()
@@ -63,19 +69,21 @@ namespace UI.Views.Transcript
             foreach (var data in await _ISubjectService.GetAllAsync())
             {
                 cbb_subjectcode.Items.Add(data.SubjectCode);
+                cbb_subjectcodecheck.Items.Add(data.SubjectCode);
             }
         }
         private async void LoadData()
         {
-            dtg_data.ColumnCount = 8;
+            dtg_data.ColumnCount = 9;
             dtg_data.Columns[0].Name = "Mã";
-            dtg_data.Columns[1].Name = "Tên";
-            dtg_data.Columns[2].Name = "Lớp";
-            dtg_data.Columns[3].Name = "Quê quán";
-            dtg_data.Columns[4].Name = "Giới tính";
-            dtg_data.Columns[5].Name = "Năm sinh";
-            dtg_data.Columns[6].Name = "Trạng thái";
-            dtg_data.Columns[7].Name = "Ngày tạo";
+            dtg_data.Columns[1].Name = "Mã sinh viên";
+            dtg_data.Columns[2].Name = "Mã bài thi";
+            dtg_data.Columns[3].Name = "Mã lớp";
+            dtg_data.Columns[4].Name = "Mã môn";
+            dtg_data.Columns[5].Name = "Tín chỉ";
+            dtg_data.Columns[6].Name = "Chuyên cần";
+            dtg_data.Columns[7].Name = "Điều kiện";
+            dtg_data.Columns[8].Name = "Điểm thi";
             dtg_data.Rows.Clear();
             var data = await _ITranscriptService.GetAllAsync();
             foreach (var load in data)
@@ -93,9 +101,25 @@ namespace UI.Views.Transcript
                     load.Status == 1 ? "Đậu" : "Trượt");
             }
         }
-        private void btn_data_Click(object sender, EventArgs e)
+        private async void btn_data_Click(object sender, EventArgs e)
         {
-            LoadData();
+            string subjectCode = cbb_studentcodecheck.Text;
+
+            try
+            {
+                var studentsRetaking = await _IStudentService.GetStudentsRetakingSubject(subjectCode);
+
+                string message = "Sinh viên cần học lại môn " + subjectCode + "\n";
+                foreach (var student in studentsRetaking)
+                {
+                    message += "- " + student.StudentCode + "\n";
+                }
+                MessageBox.Show(message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
+            }
         }
         private async void btn_add_Click(object sender, EventArgs e)
         {
@@ -167,6 +191,78 @@ namespace UI.Views.Transcript
                 tb_conditionpoint.Text = _trs.ConditionPoint.ToString();
                 tb_testscore.Text = _trs.TestScore.ToString();
                 cb_status.Checked = (_trs.Status == 1);
+            }
+        }
+        private void btn_avg_Click(object sender, EventArgs e)
+        {
+            if (_trs != null)
+            {
+                float averageScore = CalculateAverageScore(_trs);
+
+                MessageBox.Show($"Điểm trung bình: {averageScore}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một bản ghi trước khi tính điểm trung bình.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        private float CalculateAverageScore(TranscriptVM trs)
+        {
+            float attendanceWeight = 0.1f;  // Ví dụ: 10%
+            float conditionPointWeight = 0.3f;  // Ví dụ: 30%
+            float testScoreWeight = 0.6f;  // Ví dụ: 60%
+
+            float averageScore = (trs.Attendance * attendanceWeight) +
+                                 (trs.ConditionPoint * conditionPointWeight) +
+                                 (trs.TestScore * testScoreWeight);
+
+            return averageScore;
+        }
+        public async Task<float?> GetLowestTestScoreBySubject(string subjectCode)
+        {
+            var lowestScore = await _dbcontext.Transcript
+                .Where(t => t.SubjectCode == subjectCode)
+                .MinAsync(t => (float?)t.TestScore);
+
+            return lowestScore;
+        }
+        private async void btn_pointmin_Click(object sender, EventArgs e)
+        {
+            string subjectCode = cbb_subjectcodecheck.Text;
+
+            float? lowestScore = await GetLowestTestScoreBySubject(subjectCode);
+
+            if (lowestScore.HasValue)
+            {
+                MessageBox.Show($"Điểm thi thấp nhất cho môn {subjectCode} là: {lowestScore.Value}", "Thông báo");
+            }
+            else
+            {
+                MessageBox.Show($"Không có dữ liệu điểm thi cho môn {subjectCode}", "Thông báo");
+            }
+        }
+        private async void btn_transcript_Click(object sender, EventArgs e)
+        {
+            string studentId = cbb_studentcodecheck.Text;
+
+            try
+            {
+                var transcripts = await _IStudentService.GetTranscriptsByStudentCode(studentId);
+                StringBuilder message = new StringBuilder();
+
+                message.AppendLine("Bảng điểm của sinh viên: " + studentId);
+                message.AppendLine($"{"Mã HP",-10} {"Điểm CC",-15} {"Điểm ĐK",-15} {"Điểm Thi",-15}");
+
+                foreach (var transcript in transcripts)
+                {
+                    message.AppendLine($"{transcript.SubjectCode,-10} {transcript.Attendance,-15:N2} {transcript.ConditionPoint,-15:N2} {transcript.TestScore,-15:N2}");
+                }
+
+                MessageBox.Show(message.ToString(), "Thông Tin Bảng Điểm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
             }
         }
     }

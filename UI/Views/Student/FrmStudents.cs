@@ -17,12 +17,16 @@ namespace UI.Views.Student
         private readonly IStudentService _IStudentService;
         private string Code { get; set; }
         private StudentVM _std;
-
+        private List<StudentVM> _lststudents;
+        private CancellationTokenSource _cts;
         public FrmStudents()
         {
             InitializeComponent();
             _IStudentService = new StudentService();
-            //LoadData();
+            _lststudents = new List<StudentVM>();
+            LoadData();
+            tb_code.TextChanged += tb_code_TextChanged;
+            _cts = new CancellationTokenSource();
         }
         private async void LoadData()
         {
@@ -36,19 +40,44 @@ namespace UI.Views.Student
             dtg_data.Columns[6].Name = "Trạng thái";
             dtg_data.Columns[7].Name = "Ngày tạo";
             dtg_data.Rows.Clear();
-            var data = await _IStudentService.GetAllAsync();
-            foreach (var load in data)
+            _lststudents = await _IStudentService.GetAllAsync();
+
+            if (!string.IsNullOrWhiteSpace(tb_code.Text))
             {
-                dtg_data.Rows
-                    .Add(load.StudentCode,
-                    load.FullName,
-                    load.Class,
-                    load.HomeTown,
-                    load.Gender,
-                    load.BirthDay,
-                    load.Status == 1 ? "Đang học" : "Đã nghỉ",
-                    load.CreateDate);
+                _lststudents = _lststudents.Where(s => s.StudentCode.Equals(tb_code.Text.Trim())).ToList();
             }
+
+            foreach (var student in _lststudents)
+            {
+                dtg_data.Rows.Add(
+                    student.StudentCode,
+                    student.FullName,
+                    student.Class,
+                    student.HomeTown,
+                    student.Gender,
+                    student.BirthDay.ToString("dd/MM/yyyy"),
+                    student.Status == 1 ? "Đang học" : "Đã nghỉ",
+                    student.CreateDate.ToString("dd/MM/yyyy")
+                );
+            }
+        }
+        private void Reset()
+        {
+            tb_code.Text = string.Empty;
+            tb_name.Text = string.Empty;
+            tb_class.Text = string.Empty;
+            tb_hometown.Text = string.Empty;
+            tb_gender.Text = string.Empty;
+
+            dtp_birthday.Value = DateTime.Now;
+
+            cb_status.Checked = false;
+
+            if (dtg_data.CurrentRow != null)
+            {
+                dtg_data.ClearSelection();
+            }
+            Code = string.Empty;
         }
         private async void btn_add_Click(object sender, EventArgs e)
         {
@@ -68,6 +97,7 @@ namespace UI.Views.Student
                 };
                 await _IStudentService.CreateAsync(data);
                 MessageBox.Show("Success");
+                Reset();
                 LoadData();
             }
 
@@ -90,6 +120,7 @@ namespace UI.Views.Student
                 {
                     _IStudentService.RemoveAsync(Code);
                     MessageBox.Show("Xoá thành công");
+                    Reset();
                     LoadData();
                 }
             }
@@ -136,8 +167,25 @@ namespace UI.Views.Student
                     };
                     await _IStudentService.UpdateAsync(_std.StudentCode, data);
                     MessageBox.Show("Success");
+                    Reset();
                     LoadData();
                 }
+            }
+        }
+        private async void tb_code_TextChanged(object sender, EventArgs e)
+        {
+            _cts.Cancel();
+            _cts.Dispose();
+            _cts = new CancellationTokenSource();
+
+            try
+            {
+                await Task.Delay(300, _cts.Token);
+                LoadData();
+            }
+            catch (TaskCanceledException)
+            {
+
             }
         }
     }

@@ -1,12 +1,4 @@
-﻿using BUS.Viewmodel.ExamSchedule;
-using BUS.Viewmodel.Teacher;
-using DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using BUS.Viewmodel.Teacher;
 namespace BUS.Services._1_Interface
 {
     public interface ITeacherService

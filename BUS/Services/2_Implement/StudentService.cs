@@ -1,5 +1,6 @@
 ﻿using BUS.Services._1_Interface;
 using BUS.Viewmodel.Student;
+using BUS.Viewmodel.Transcript;
 using DAL.ApplicationDBContext;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -75,6 +76,35 @@ namespace BUS.Services._2_Implement
                 CreateDate = student.CreateDate
             };
         }
+        public float CalculateAverageScore(Transcript trs)
+        {
+            float attendanceWeight = 0.1f; 
+            float conditionPointWeight = 0.3f; 
+            float testScoreWeight = 0.6f; 
+
+            float averageScore = (trs.Attendance * attendanceWeight) +
+                                 (trs.ConditionPoint * conditionPointWeight) +
+                                 (trs.TestScore * testScoreWeight);
+
+            return averageScore;
+        }
+        public async Task<List<StudentVM>> GetStudentsRetakingSubject(string subjectCode)
+        {
+            var transcripts = await _dbcontext.Transcript
+                .Where(t => t.SubjectCode == subjectCode)
+                .ToListAsync();
+
+            var studentsRetaking = transcripts
+                .Select(t => new { Transcript = t, AverageScore = CalculateAverageScore(t) })
+                .Where(t => t.AverageScore < 5.0)
+                .Select(t => new StudentVM
+                {
+                    StudentCode = t.Transcript.StudentCode,
+                })
+                .ToList();
+
+            return studentsRetaking;
+        }
         public async Task<bool> RemoveAsync(string Code)
         {
             var student = await _dbcontext.Student
@@ -111,6 +141,25 @@ namespace BUS.Services._2_Implement
             _dbcontext.Student.Update(student);
             await _dbcontext.SaveChangesAsync();
             return true;
+        }
+        public async Task<List<TranscriptVM>> GetTranscriptsByStudentCode(string Code)
+        {
+            return await _dbcontext.Transcript
+                .Where(t => t.StudentCode == Code)
+                .Select(t => new TranscriptVM
+                {
+                    TranscriptCode = t.TranscriptCode,
+                    StudentCode = t.StudentCode,
+                    ExamCode = t.ExamCode,
+                    ClassCode = t.ClassCode,
+                    SubjectCode = t.SubjectCode,
+                    NumberCredits = t.NumberCredits,
+                    Attendance = t.Attendance,
+                    ConditionPoint = t.ConditionPoint,
+                    Status = t.Status,
+                    TestScore = t.TestScore,
+                })
+                .ToListAsync();
         }
     }
 }

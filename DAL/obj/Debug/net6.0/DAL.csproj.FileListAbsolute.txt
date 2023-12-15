@@ -12,3 +12,4 @@ C:\Users\Administrator\Desktop\ManagerStudent\DAL\obj\Debug\net6.0\refint\DAL.dl
 C:\Users\Administrator\Desktop\ManagerStudent\DAL\obj\Debug\net6.0\DAL.pdb
 C:\Users\Administrator\Desktop\ManagerStudent\DAL\obj\Debug\net6.0\DAL.genruntimeconfig.cache
 C:\Users\Administrator\Desktop\ManagerStudent\DAL\obj\Debug\net6.0\ref\DAL.dll
+C:\Users\Administrator\Desktop\ManagerStudent\DAL\obj\Debug\net6.0\DAL.sourcelink.json

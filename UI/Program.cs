@@ -1,5 +1,8 @@
 using UI.Views.Class;
+using UI.Views.Manager;
 using UI.Views.Student;
+using UI.Views.Subject;
+using UI.Views.Teacher;
 using UI.Views.Transcript;
 
 namespace UI
@@ -15,7 +18,7 @@ namespace UI
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new FrmClassTC());
+            Application.Run(new ManagerStudents());
         }
     }
 }

@@ -78,3 +78,7 @@ C:\Users\Administrator\Desktop\ManagerStudent\UI\obj\Debug\net6.0-windows\UI.Vie
 C:\Users\Administrator\Desktop\ManagerStudent\UI\obj\Debug\net6.0-windows\UI.Views.Transcript.FrmTranscript.resources
 C:\Users\Administrator\Desktop\ManagerStudent\UI\obj\Debug\net6.0-windows\UI.Views.Subject.FrmSubject.resources
 C:\Users\Administrator\Desktop\ManagerStudent\UI\obj\Debug\net6.0-windows\UI.Views.Teacher.FrmTeacher.resources
+C:\Users\Administrator\Desktop\ManagerStudent\UI\obj\Debug\net6.0-windows\UI.sourcelink.json
+C:\Users\Administrator\Desktop\ManagerStudent\UI\obj\Debug\net6.0-windows\UI.Views.ExamSchedule.FrmExamSchedule.resources
+C:\Users\Administrator\Desktop\ManagerStudent\UI\obj\Debug\net6.0-windows\UI.Views.Manager.ManagerStudents.resources
+C:\Users\Administrator\Desktop\ManagerStudent\UI\obj\Debug\net6.0-windows\UI.Views.Semester.FrmSemester.resources
