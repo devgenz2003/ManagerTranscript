@@ -74,9 +74,9 @@
             groupBox1.Controls.Add(btn_delete);
             groupBox1.Controls.Add(btn_add);
             groupBox1.Controls.Add(btn_update);
-            groupBox1.Location = new Point(663, 33);
+            groupBox1.Location = new Point(868, 33);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(250, 420);
+            groupBox1.Size = new Size(179, 420);
             groupBox1.TabIndex = 20;
             groupBox1.TabStop = false;
             groupBox1.Text = "Chức năng";
@@ -85,7 +85,7 @@
             // 
             btn_avg.Location = new Point(6, 233);
             btn_avg.Name = "btn_avg";
-            btn_avg.Size = new Size(238, 29);
+            btn_avg.Size = new Size(161, 29);
             btn_avg.TabIndex = 20;
             btn_avg.Text = "Điểm trung bình";
             btn_avg.UseVisualStyleBackColor = true;
@@ -95,7 +95,7 @@
             // 
             btn_data.Location = new Point(6, 183);
             btn_data.Name = "btn_data";
-            btn_data.Size = new Size(238, 29);
+            btn_data.Size = new Size(161, 29);
             btn_data.TabIndex = 19;
             btn_data.Text = "Danh sách học lại";
             btn_data.UseVisualStyleBackColor = true;
@@ -105,7 +105,7 @@
             // 
             btn_delete.Location = new Point(6, 134);
             btn_delete.Name = "btn_delete";
-            btn_delete.Size = new Size(238, 30);
+            btn_delete.Size = new Size(161, 30);
             btn_delete.TabIndex = 18;
             btn_delete.Text = "Xoá";
             btn_delete.UseVisualStyleBackColor = true;
@@ -115,7 +115,7 @@
             // 
             btn_add.Location = new Point(6, 38);
             btn_add.Name = "btn_add";
-            btn_add.Size = new Size(238, 29);
+            btn_add.Size = new Size(161, 29);
             btn_add.TabIndex = 16;
             btn_add.Text = "Tạo mới";
             btn_add.UseVisualStyleBackColor = true;
@@ -125,7 +125,7 @@
             // 
             btn_update.Location = new Point(6, 86);
             btn_update.Name = "btn_update";
-            btn_update.Size = new Size(238, 29);
+            btn_update.Size = new Size(161, 29);
             btn_update.TabIndex = 17;
             btn_update.Text = "Chỉnh sửa";
             btn_update.UseVisualStyleBackColor = true;
@@ -138,7 +138,7 @@
             dtg_data.Name = "dtg_data";
             dtg_data.RowHeadersWidth = 51;
             dtg_data.RowTemplate.Height = 29;
-            dtg_data.Size = new Size(901, 188);
+            dtg_data.Size = new Size(1035, 188);
             dtg_data.TabIndex = 32;
             dtg_data.CellClick += dtg_data_CellClick;
             // 
@@ -166,7 +166,7 @@
             groupBox2.Controls.Add(tb_code);
             groupBox2.Location = new Point(6, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(651, 441);
+            groupBox2.Size = new Size(786, 441);
             groupBox2.TabIndex = 33;
             groupBox2.TabStop = false;
             groupBox2.Text = "Thông tin";
@@ -276,7 +276,7 @@
             cbb_examcode.FormattingEnabled = true;
             cbb_examcode.Location = new Point(145, 107);
             cbb_examcode.Name = "cbb_examcode";
-            cbb_examcode.Size = new Size(474, 28);
+            cbb_examcode.Size = new Size(635, 28);
             cbb_examcode.TabIndex = 40;
             // 
             // cbb_classcode
@@ -284,7 +284,7 @@
             cbb_classcode.FormattingEnabled = true;
             cbb_classcode.Location = new Point(145, 148);
             cbb_classcode.Name = "cbb_classcode";
-            cbb_classcode.Size = new Size(474, 28);
+            cbb_classcode.Size = new Size(635, 28);
             cbb_classcode.TabIndex = 39;
             // 
             // cbb_subjectcode
@@ -292,7 +292,7 @@
             cbb_subjectcode.FormattingEnabled = true;
             cbb_subjectcode.Location = new Point(145, 189);
             cbb_subjectcode.Name = "cbb_subjectcode";
-            cbb_subjectcode.Size = new Size(474, 28);
+            cbb_subjectcode.Size = new Size(635, 28);
             cbb_subjectcode.TabIndex = 38;
             // 
             // cbb_studentcode
@@ -300,42 +300,42 @@
             cbb_studentcode.FormattingEnabled = true;
             cbb_studentcode.Location = new Point(145, 66);
             cbb_studentcode.Name = "cbb_studentcode";
-            cbb_studentcode.Size = new Size(474, 28);
+            cbb_studentcode.Size = new Size(635, 28);
             cbb_studentcode.TabIndex = 37;
             // 
             // tb_testscore
             // 
             tb_testscore.Location = new Point(145, 350);
             tb_testscore.Name = "tb_testscore";
-            tb_testscore.Size = new Size(474, 27);
+            tb_testscore.Size = new Size(635, 27);
             tb_testscore.TabIndex = 36;
             // 
             // tb_conditionpoint
             // 
             tb_conditionpoint.Location = new Point(145, 310);
             tb_conditionpoint.Name = "tb_conditionpoint";
-            tb_conditionpoint.Size = new Size(474, 27);
+            tb_conditionpoint.Size = new Size(635, 27);
             tb_conditionpoint.TabIndex = 35;
             // 
             // tb_attendance
             // 
             tb_attendance.Location = new Point(145, 270);
             tb_attendance.Name = "tb_attendance";
-            tb_attendance.Size = new Size(474, 27);
+            tb_attendance.Size = new Size(635, 27);
             tb_attendance.TabIndex = 34;
             // 
             // tb_credits
             // 
             tb_credits.Location = new Point(145, 230);
             tb_credits.Name = "tb_credits";
-            tb_credits.Size = new Size(474, 27);
+            tb_credits.Size = new Size(635, 27);
             tb_credits.TabIndex = 33;
             // 
             // tb_code
             // 
             tb_code.Location = new Point(145, 26);
             tb_code.Name = "tb_code";
-            tb_code.Size = new Size(474, 27);
+            tb_code.Size = new Size(635, 27);
             tb_code.TabIndex = 32;
             // 
             // label11
@@ -349,9 +349,9 @@
             // 
             // btn_pointmin
             // 
-            btn_pointmin.Location = new Point(663, 462);
+            btn_pointmin.Location = new Point(868, 462);
             btn_pointmin.Name = "btn_pointmin";
-            btn_pointmin.Size = new Size(244, 29);
+            btn_pointmin.Size = new Size(179, 29);
             btn_pointmin.TabIndex = 21;
             btn_pointmin.Text = "Điểm thấp nhất";
             btn_pointmin.UseVisualStyleBackColor = true;
@@ -359,9 +359,9 @@
             // 
             // btn_transcript
             // 
-            btn_transcript.Location = new Point(663, 496);
+            btn_transcript.Location = new Point(868, 496);
             btn_transcript.Name = "btn_transcript";
-            btn_transcript.Size = new Size(244, 29);
+            btn_transcript.Size = new Size(179, 29);
             btn_transcript.TabIndex = 54;
             btn_transcript.Text = "Bảng điểm";
             btn_transcript.UseVisualStyleBackColor = true;
@@ -381,7 +381,7 @@
             cbb_subjectcodecheck.FormattingEnabled = true;
             cbb_subjectcodecheck.Location = new Point(151, 458);
             cbb_subjectcodecheck.Name = "cbb_subjectcodecheck";
-            cbb_subjectcodecheck.Size = new Size(506, 28);
+            cbb_subjectcodecheck.Size = new Size(641, 28);
             cbb_subjectcodecheck.TabIndex = 56;
             // 
             // cbb_studentcodecheck
@@ -389,14 +389,14 @@
             cbb_studentcodecheck.FormattingEnabled = true;
             cbb_studentcodecheck.Location = new Point(151, 497);
             cbb_studentcodecheck.Name = "cbb_studentcodecheck";
-            cbb_studentcodecheck.Size = new Size(506, 28);
+            cbb_studentcodecheck.Size = new Size(641, 28);
             cbb_studentcodecheck.TabIndex = 57;
             // 
             // FrmTranscript
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(925, 743);
+            ClientSize = new Size(1059, 743);
             Controls.Add(cbb_studentcodecheck);
             Controls.Add(cbb_subjectcodecheck);
             Controls.Add(label12);

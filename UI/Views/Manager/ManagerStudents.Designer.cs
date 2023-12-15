@@ -40,6 +40,7 @@
             tiệnÍchToolStripMenuItem = new ToolStripMenuItem();
             thoátChươngTrìnhToolStripMenuItem = new ToolStripMenuItem();
             thôngTinToolStripMenuItem = new ToolStripMenuItem();
+            view_share = new Panel();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -49,7 +50,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { tuỳChọnToolStripMenuItem, tiệnÍchToolStripMenuItem, thôngTinToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(848, 28);
+            menuStrip1.Size = new Size(1098, 28);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -128,11 +129,19 @@
             thôngTinToolStripMenuItem.Size = new Size(86, 24);
             thôngTinToolStripMenuItem.Text = "Thông tin";
             // 
+            // view_share
+            // 
+            view_share.Location = new Point(12, 31);
+            view_share.Name = "view_share";
+            view_share.Size = new Size(1074, 720);
+            view_share.TabIndex = 1;
+            // 
             // ManagerStudents
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(848, 450);
+            ClientSize = new Size(1098, 763);
+            Controls.Add(view_share);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "ManagerStudents";
@@ -157,5 +166,6 @@
         private ToolStripMenuItem tiệnÍchToolStripMenuItem;
         private ToolStripMenuItem thoátChươngTrìnhToolStripMenuItem;
         private ToolStripMenuItem thôngTinToolStripMenuItem;
+        private Panel view_share;
     }
 }
