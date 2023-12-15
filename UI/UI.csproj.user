@@ -7,6 +7,15 @@
     <Compile Update="Views\Class\FrmClassTC.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Views\ExamSchedule\FrmExamSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Manager\ManagerStudents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Semester\FrmSemester.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Views\Student\FrmStudents.cs">
       <SubType>Form</SubType>
     </Compile>

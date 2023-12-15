@@ -9,5 +9,6 @@ namespace BUS.Services._1_Interface
         public Task<bool> CreateAsync(ClassTCCreateVM request);
         public Task<bool> UpdateAsync(string Code, ClassTCUpdateVM request);
         public Task<bool> RemoveAsync(string Code);
+        public Task<int> GetNumberOfCreditClassesBySemesterCodeAsync(string semesterCode);
     }
 }

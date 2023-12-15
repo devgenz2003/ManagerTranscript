@@ -48,6 +48,7 @@
             btn_data = new Button();
             dtg_data = new DataGridView();
             tb_gender = new TextBox();
+            label8 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtg_data).BeginInit();
             SuspendLayout();
@@ -56,8 +57,9 @@
             // 
             tb_code.Location = new Point(187, 54);
             tb_code.Name = "tb_code";
-            tb_code.Size = new Size(494, 27);
+            tb_code.Size = new Size(350, 27);
             tb_code.TabIndex = 0;
+            tb_code.TextChanged += tb_code_TextChanged;
             // 
             // tb_name
             // 
@@ -172,7 +174,7 @@
             // 
             // btn_update
             // 
-            btn_update.Location = new Point(6, 85);
+            btn_update.Location = new Point(6, 81);
             btn_update.Name = "btn_update";
             btn_update.Size = new Size(238, 29);
             btn_update.TabIndex = 17;
@@ -182,7 +184,7 @@
             // 
             // btn_delete
             // 
-            btn_delete.Location = new Point(6, 132);
+            btn_delete.Location = new Point(6, 124);
             btn_delete.Name = "btn_delete";
             btn_delete.Size = new Size(238, 30);
             btn_delete.TabIndex = 18;
@@ -205,7 +207,7 @@
             // 
             // btn_data
             // 
-            btn_data.Location = new Point(6, 184);
+            btn_data.Location = new Point(6, 168);
             btn_data.Name = "btn_data";
             btn_data.Size = new Size(238, 29);
             btn_data.TabIndex = 19;
@@ -231,11 +233,21 @@
             tb_gender.Size = new Size(494, 27);
             tb_gender.TabIndex = 20;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(556, 61);
+            label8.Name = "label8";
+            label8.Size = new Size(122, 20);
+            label8.TabIndex = 21;
+            label8.Text = "(có thể tìm kiếm)";
+            // 
             // FrmStudents
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(949, 721);
+            Controls.Add(label8);
             Controls.Add(tb_gender);
             Controls.Add(dtg_data);
             Controls.Add(groupBox1);
@@ -288,5 +300,6 @@
         private DataGridView dtg_data;
         private TextBox tb_gender;
         private Button btn_data;
+        private Label label8;
     }
 }

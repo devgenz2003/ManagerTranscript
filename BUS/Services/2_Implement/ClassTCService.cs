@@ -43,7 +43,6 @@ namespace BUS.Services._2_Implement
             await _dbcontext.SaveChangesAsync();
             return true;
         }
-
         public async Task<List<ClassTCVM>> GetAllAsync()
         {
             var obj = await _dbcontext.ClassTC.ToListAsync();
@@ -53,6 +52,7 @@ namespace BUS.Services._2_Implement
                 ClassName = s.ClassName,
                 ClassCode = s.ClassCode,
                 CodeSubject = s.CodeSubject,
+                SemesterCode = s.SemesterCode,
                 TeacherCode = s.TeacherCode,
                 QuantityStudent = s.QuantityStudent,
                 Status = s.Status
@@ -60,7 +60,6 @@ namespace BUS.Services._2_Implement
 
             return objvms;
         }
-
         public async Task<ClassTCVM> GetByIDAsync(string Code)
         {
             var obj = await _dbcontext.ClassTC
@@ -74,13 +73,18 @@ namespace BUS.Services._2_Implement
             {
                 ClassName = obj.ClassName,
                 ClassCode = obj.ClassCode,
+                SemesterCode = obj.SemesterCode,
                 CodeSubject = obj.CodeSubject,
                 TeacherCode = obj.TeacherCode,
                 QuantityStudent = obj.QuantityStudent,
                 Status = obj.Status
             };
         }
-
+        public async Task<int> GetNumberOfCreditClassesBySemesterCodeAsync(string semesterCode)
+        {
+            return await _dbcontext.ClassTC
+                    .CountAsync(c => c.SemesterCode == semesterCode);
+        }
         public async Task<bool> RemoveAsync(string Code)
         {
             var obj = await _dbcontext.ClassTC
@@ -95,7 +99,6 @@ namespace BUS.Services._2_Implement
             await _dbcontext.SaveChangesAsync();
             return true;
         }
-
         public async Task<bool> UpdateAsync(string Code, ClassTCUpdateVM request)
         {
             var obj = await _dbcontext.ClassTC

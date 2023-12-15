@@ -71,7 +71,7 @@ namespace BUS.Services._2_Implement
                 CreateDate = obj.CreateDate,
                 Status = obj.Status
             };
-        }
+        }      
         public async Task<bool> RemoveAsync(string Code)
         {
             var obj = await _dbcontext.Teacher
